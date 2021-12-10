@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <style>
+      .main {
+        width: 33%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container main mt-5">
+      <!-- form-for-adding-todos -->
+      
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Add a new Todo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="d-grid col-3 mx-auto">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      
+      <br><br>
+      <!-- todo-list -->
+        <ul class="list-group">
+          <!-- <li class="list-group-item">An item<button type="button" class="btn-close" aria-label="Close"></button></li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li> -->
+        </ul>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var arr=[]
+      var count= 0
+      var keyid=1
+      var btn = document.querySelector("button");
+      btn.addEventListener("click", function (e) {
+        let input = document.querySelector("input");
+        let val = input.value;
+        let ul = document.querySelector("ul");
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+        li.id=keyid
+        // let i = document.querySelector("i");
+        let i = document.createElement("i");
+        i.classList.add("fas");
+        i.classList.add("fa-times");
+
+        li.innerText = val;
+
+        li.append(i);
+        ul.append(li);
+        localStorage.setItem('todo :' + (++count),val)
+        var closebtns = document.getElementsByClassName("fas");
+        var ii=0;
+        keyid++
+        for (var a = 0; a < closebtns.length; a++) {
+          
+          closebtns[a].addEventListener("click", function (e) {
+           
+           this.parentElement.remove();
+           localStorage.removeItem('todo :' + e.target.parentElement.id);
+           
+          // console.log(ii++); 
+           
+          });
+        
+        }
+        //localStorage.removeItem('todo :' + ++ii);
+      });
+
+      
+    </script>
+  </body>
+</html>
