@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <style>
+      .main {
+        width: 400px;
+        height: 300px;
+        border: 1px solid black;
+        background-color: whitesmoke;
+        box-sizing: border-box;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .bor {
+        width: 33%;
+        height: 100px;
+        border: 1px solid black;
+        /* font-size: 60px;
+        font-weight: bolder; */
+        text-align: center;
+      }
+      .inp {
+        background-color: whitesmoke;
+        width: 100%;
+        font-size: 60px;
+        font-weight: bolder;
+        text-align: center;
+        border-style: none;
+      }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="main text-center mx-auto">
+        <form action="">
+          <div class="row row-cols-3">
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value1" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value2" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value3" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value4" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value5" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value6" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value7" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value8" id="" />
+            </div>
+            <div class="col-4 bor">
+              <input class="inp" type="text" name="value9" id="" />
+            </div>
+
+            <button
+              class="btn btn-outline-primary btn-lg rounded-pill mt-4 mx-auto"
+              onclick="reset()"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var vs = [];
+      var res = false;
+      $("input").change(function () {
+        for (i = 0; i <= $(".row").children().children().length - 1; i++) {
+          vs[i] = $(".row").children().children().eq(i).val();
+          // console.log($(".row").children().children().eq(i).val());
+        }
+
+        if (vs[0] == "X" && vs[1] == "X" && vs[2] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[3] == "X" && vs[4] == "X" && vs[5] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[6] == "X" && vs[7] == "X" && vs[8] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[0] == "X" && vs[3] == "X" && vs[6] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[1] == "X" && vs[4] == "X" && vs[7] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[2] == "X" && vs[5] == "X" && vs[8] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[0] == "X" && vs[4] == "X" && vs[8] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[2] == "X" && vs[4] == "X" && vs[6] == "X") {
+          res = true;
+          alert("player:X is winner..");
+        } else if (vs[0] == "0" && vs[1] == "0" && vs[2] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[3] == "0" && vs[4] == "0" && vs[5] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[6] == "0" && vs[7] == "0" && vs[8] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[0] == "0" && vs[3] == "0" && vs[6] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[1] == "0" && vs[4] == "0" && vs[7] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[2] == "0" && vs[5] == "0" && vs[8] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[0] == "0" && vs[4] == "0" && vs[8] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        } else if (vs[2] == "0" && vs[4] == "0" && vs[6] == "0") {
+          res = true;
+          alert("player:0 is winner..");
+        }
+
+        if (res) {
+          for (i = 0; i <= $(".row").children().children().length - 1; i++) {
+            vs[i] = $(".row")
+              .children()
+              .children()
+              .attr("disabled", "disabled"); //Disable
+          }
+        }
+      });
+      function reset() {
+        for (i = 0; i <= $(".row").children().children().length - 1; i++) {
+          vs[i] = $(".row").children().children().removeAttr("disabled");
+          //.attr("disabled", "disabled"); //Disable
+        }
+      }
+    </script>
+  </body>
+</html>
