@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-6</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h1>Task-6</h1>
+
+    <script>
+      //Task-6
+class HttpError extends Error {
+    constructor(response) {
+    super(`${response.status} for ${response.url}`);
+    this.name = 'HttpError';
+    this.response = response;
+    }
+}
+async function loadJson(url) {
+    try{
+        const response = await fetch(url);
+        if (response.status == 200) {
+            return response.json();
+        } else {
+            throw new HttpError(response);
+        }
+    }
+    catch(err){
+        return ('fetch failed'+ err);
+    }
+}
+
+// Ask for a user name until github returns a valid user
+// function demoGithubUser() {
+//     let name = prompt("Enter a name?", "iliakan");
+//     return loadJson(`https://api.github.com/users/${name}`).then(user => {
+//         alert(`Full name: ${user.name}.`);
+//         return user;
+//     }).catch(err => {
+//         if (err instanceof HttpError && err.response.status == 404) {
+//         alert("No such user, please reenter.");
+//         return demoGithubUser();
+//     } else {
+//         throw err;
+//     }
+//     });
+// }
+
+async function demoGithubUser(){
+  
+    try{
+        let name='';
+        let res='';
+        do{
+         name = prompt("Enter a name?", "iliakan");
+        res = await loadJson(`https://api.github.com/users/${name}`);
+        
+            alert(`Full name: ${res.name}.`);
+            
+            
+        
+    }while(res.status!=200)
+        
+           
+
+        
+    }
+    catch(err){
+        return ('fetch failed'+ err);
+    }
+
+}
+demoGithubUser();
+  
+    </script>
+</body>
+</html>
