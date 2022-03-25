@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            position: relative;
+        }
+        img{
+            position: absolute;
+            
+        }
+        #two {
+            top:160px;
+            left:300px;
+        }
+    </style>
+    <title>Game</title>
+</head>
+<body>
+    <img src="ryu_stand_still.png" alt="" id="1">
+    <script>
+        $('#1').hover(function(){
+            $('#1').attr("src","")
+            $('#1').attr("src","ryu_animated.gif")
+            
+            
+        })
+        $('#1').mouseleave(function(){
+            $('#1').attr("src","")
+            $('#1').attr("src","ryu_stand_still.png")
+        })
+
+        
+        let flag = false;
+        let counter = 0;
+        $('#1').bind('click', function(){
+            counter+=1100;
+            $('#two').remove();
+            let image = `<img src="hadouken.gif" alt="" id="two">`;
+            $('body').append(image)
+            $('#1').attr('src','ryu_hadouken_pose.png')
+            $('#two').animate({left:`+=${counter}px`},function(){
+                //$('#two').hide();
+                $('#two').hide()
+                $('#two').animate({left: "-=1100px"});
+                $('#two').remove();
+                $("#1").hide();
+                $("#1").attr("src","ryu_stand_still.png");
+                $("#1").show();
+                
+            });
+            flag = true;
+            
+        })
+        
+    </script>
+</body>
+</html>

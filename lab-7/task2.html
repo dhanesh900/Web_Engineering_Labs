@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button id="clicker">Click me to show a hidden secret!</button>
+     <div id="secret" style="display: none">I am a hidden secret.</div> 
+    <script>
+        //a
+        //$('#secret').fadeIn(1000);
+
+        //b
+        // $('#secret').slideDown();
+        //c
+       $('#clicker').click(function(){
+            $('#clicker').text('Click me to toggle a hidden secret!');
+            $('#secret').toggle();
+        })
+        
+    </script>
+</body>
+</html>

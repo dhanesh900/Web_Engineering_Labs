@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9530f19db9.js" crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+</head>
+<body class="bg-light">
+    <div class="container bg-white m-5 rounded">
+        <h2 class="text-center">My Favorite Movies</h2>
+        <form class="row g-3 mt-3">
+            <div class="col-auto">
+                <label for="title">Title</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control h-75 pe-5 me-5" id="title" placeholder="Movie Title" required>
+            </div>
+
+            <div class="col-auto">
+                <label for="rating">Rating</label>
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control h-75 pe-5 me-5" id="rating" placeholder="Rate the movie from 0 to 10"required> 
+                
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-secondary p-1 mb-2" value="Add Movie">
+            </div>
+        </form>
+
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th class="col col-8 text-center">Title 
+                    <button class="btn" id="sort-t"><i class="fas fa-sort"></i></button>
+                </th>
+                <th class="col col-2 text-center">Rating
+                    <button class="btn" id="sort-r"> <i class="fas fa-sort"></i></button>
+                   
+                </th>
+                <th class="col col-2 text-center p-3">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+            <script>
+                    $('.btn').on('click',function(e){
+                if($('#title').val()!=='' && $('#rating').val()!=='')
+                {
+                    let title = $('#title').val();
+                    let button = `<button type="button" class="btn btn-danger">Delete</button>`
+                    let rating = $('#rating').val();
+
+                    let newRow = `<tr>
+                                    <td class="col col-8 text-center">${title}</td>
+                                    <td class="col col-2 text-center">${rating}</td>
+                                    <td class="col col-2 text-center">${button}</td>
+                                </tr>`;
+                    $('tbody').append(newRow);
+                    e.preventDefault();
+
+                    $('.btn-danger').on('click',function(e){
+                        e.target.parentElement.parentElement.remove();
+                    })
+                    title = $('#title').val('');
+                    rating = $('#rating').val('');
+                }
+                
+                
+            })
+
+            let flag = true;
+            $('#sort-t').click(function(){
+                //Storing the complete row in row array 
+                let row=[];
+                let tr = $('tr');
+                let td = $(tr).eq(0).find('td');
+                for(let i = 1 ; i<tr.length; i++){
+                    let td = $(tr).eq(i).find('td');
+                    let obj = {};
+                    obj.title = $(td).eq(0).text();
+                    obj.rating = $(td).eq(1).text();
+                    obj.delete = $(td).eq(2).html();
+                    row.push(obj)
+                }
+                //if first time come then ascending and if second time then descending
+                if(flag)
+                {
+                    row.sort((a, b) => (a.title > b.title) ? 1 : -1)
+                    flag = false;
+                }
+                else{
+                    row.sort((a, b) => (b.title > a.title) ? 1 : -1)
+                    flag = true;
+                }
+                //first remove the body and then add all the elements from start either ascending or descending
+                $('tbody').remove();
+                let tbody = '<tbody></tbody';
+                $('table').append(tbody);
+                
+                for(let i = 0 ; i<row.length; i++){
+                    let button = `<button type="button" class="btn btn-danger">Delete</button>`
+                    
+                    let newRow = `<tr>
+                                    <td class="col col-8 text-center">
+                                        ${row[i].title}
+                                    </td>
+                                    <td class="col col-2 text-center">
+                                        ${row[i].rating}
+                                    </td>
+                                    <td class="col col-2 text-center">
+                                        ${row[i].delete}
+                                    </td>
+                                </tr>`;
+                    $('tbody').append(newRow);
+                }
+                //for deleting the complete row
+                $('.btn-danger').on('click',function(e){
+                        e.target.parentElement.parentElement.remove();
+                })
+                
+            })
+            
+                
+            $('#sort-r').click(function(){
+                //Storing the complete row in row array 
+                let row=[];
+                let tr = $('tr');
+                let td = $(tr).eq(0).find('td');
+                for(let i = 1 ; i<tr.length; i++){
+                    let td = $(tr).eq(i).find('td');
+                    let obj = {};
+                    obj.title = $(td).eq(0).text();
+                    obj.rating = $(td).eq(1).text();
+                    obj.delete = $(td).eq(2).html();
+                    row.push(obj)
+                }
+                //if first time come then ascending and if second time then descending
+                if(flag)
+                {
+                    row.sort((a, b) => (Number(a.rating) - Number(b.rating)))
+                    flag = false;
+                }
+                else{
+                    row.sort((a, b) => (Number(b.rating) - Number(a.rating)))
+                    flag = true;
+                }
+                //first remove the body and then add all the elements from start either ascending or descending
+                $('tbody').remove();
+                let tbody = '<tbody></tbody';
+                $('table').append(tbody);
+                
+                for(let i = 0 ; i<row.length; i++){
+                    let button = `<button type="button" class="btn btn-danger">Delete</button>`
+                    
+                    let newRow = `<tr>
+                                    <td class="col col-8 text-center">
+                                        ${row[i].title}
+                                    </td>
+                                    <td class="col col-2 text-center">
+                                        ${row[i].rating}
+                                    </td>
+                                    <td class="col col-2 text-center">
+                                        ${row[i].delete}
+                                    </td>
+                                </tr>`;
+                    $('tbody').append(newRow);
+                }
+                //for deleting the complete row
+                $('.btn-danger').on('click',function(e){
+                        e.target.parentElement.parentElement.remove();
+                })
+            })
+            </script>
+          </table>
+    </div>
+    </body>
+    </html>
